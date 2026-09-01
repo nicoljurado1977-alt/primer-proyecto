@@ -172,7 +172,10 @@ h3 { font-size: 18px; margin-bottom: 8px; }
   border-radius: 999px;
   transition: width 1.2s ease;
 }
-
+.skill-group h2 {
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
 /* ===== Proyectos (Grid + cards interactivas) ===== */
 .projects-grid {
   display: grid;
