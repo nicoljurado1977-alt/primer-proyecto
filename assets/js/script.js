@@ -95,7 +95,7 @@ nameInput.addEventListener("input", () => validateField(nameInput, "name-error",
 emailInput.addEventListener("input", () => validateField(emailInput, "email-error", "email"));
 messageInput.addEventListener("input", () => validateField(messageInput, "message-error", "message"));
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const isNameValid = validateField(nameInput, "name-error", "name");
@@ -103,10 +103,24 @@ form.addEventListener("submit", (e) => {
   const isMessageValid = validateField(messageInput, "message-error", "message");
 
   if (isNameValid && isEmailValid && isMessageValid) {
-    successMessage.textContent = `¡Gracias, ${nameInput.value.trim()}! Tu mensaje fue enviado.`;
-    form.reset();
-    document.querySelectorAll(".form-group input, .form-group textarea")
-      .forEach((el) => el.classList.remove("valid", "invalid"));
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" },
+      });
+
+      if (response.ok) {
+        successMessage.textContent = `¡Gracias, ${nameInput.value.trim()}! Tu mensaje fue enviado.`;
+        form.reset();
+        document.querySelectorAll(".form-group input, .form-group textarea")
+          .forEach((el) => el.classList.remove("valid", "invalid"));
+      } else {
+        successMessage.textContent = "Hubo un problema al enviar. Intenta de nuevo.";
+      }
+    } catch (error) {
+      successMessage.textContent = "No se pudo conectar. Revisa tu internet e intenta de nuevo.";
+    }
   } else {
     successMessage.textContent = "";
   }
