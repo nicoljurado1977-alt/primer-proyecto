@@ -1,12 +1,12 @@
 /* ===== Variables CSS personalizadas ===== */
 :root {
-  --bg: #FFFFFF;
-  --bg-hero: #F7F7F5;
+  --bg: #fefdfd;
+  --bg-hero: #d0cdef;
   --bg-alt: #FAFAF8;
-  --border: #E4E2DC;
+  --border: #c8b372;
   --ink: #1F1E1B;
   --ink-muted: #6b6a64;
-  --accent: #2F6FED;
+  --accent: #aa4bc4;
   --accent-soft: #2F6FED14;
   --error: #c0392b;
   --success: #2e7d32;
